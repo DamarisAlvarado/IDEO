@@ -1,15 +1,29 @@
+import { globalStyles } from '@/styles/globalStyles';
+import { useRouter } from 'expo-router';
 import React from 'react';
-import { Button, Text, View } from 'react-native';
+import { Button, Image, Text, TextInput, View } from 'react-native';
 
 
-export default function index() {
+export default function Login() {
+    const router = useRouter();
   return (
-    <View>
-    <Text>Login</Text>
+    <View style={globalStyles.contenedorP}>
+
+    <Image style={globalStyles.LogoPrin} source={require('../assets/images/logo.png')} />
+    <TextInput style={globalStyles.Inputs} keyboardType='email-address' placeholder='Correo Electronico' />
+
+    <TextInput style={[globalStyles.Inputs, { marginBottom: 50 }]}secureTextEntry={true} placeholder='Contraseña'/>
      <Button 
-        title="ghh" 
-        onPress={() => console.log('hola')} 
-      />    
+        title="Entrar" 
+        onPress={() => router.push('/registrar')} 
+      /> 
+
+       <Text style={{margin:20}}>¿No tienes una cuenta?  
+                <Text 
+              
+              >  Registrate
+              </Text>
+          </Text>      
     </View>
   )
 }

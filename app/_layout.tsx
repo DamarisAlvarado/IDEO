@@ -12,6 +12,6 @@ const _layout = () => {
       <StatusBar style='light'/>
   </View>
   )
-}
+};
 
 export default _layout
