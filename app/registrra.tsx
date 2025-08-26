@@ -5,7 +5,7 @@ export default function index() {
   return (
     <View>
     <Text>Registrar</Text>
-     <Button 
+      <Button 
         title="ghh" 
         onPress={() => console.log('hola')} 
       />    
