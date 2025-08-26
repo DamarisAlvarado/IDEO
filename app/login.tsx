@@ -1,6 +1,5 @@
 import React from 'react';
 import { Button, Text, View } from 'react-native';
-import { HomeButton } from '../components/HomeButton';
 
 
 export default function index() {
@@ -11,7 +10,6 @@ export default function index() {
         title="ghh" 
         onPress={() => console.log('hola')} 
       />    
-      <HomeButton label="Perfil"/>
     </View>
   )
 }

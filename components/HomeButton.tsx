@@ -21,8 +21,12 @@ const styles = StyleSheet.create({
     container: {
         backgroundColor: '#4B507C',
         borderRadius: 30,
-        padding: 50,
+        height: 150,
+        width: 150,
         elevation: 3,
+        display:'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
     }
     
 })
