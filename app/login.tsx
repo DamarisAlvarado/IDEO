@@ -20,7 +20,7 @@ export default function Login() {
 
        <Text style={{margin:20}}>¿No tienes una cuenta?  
                 <Text 
-              
+               onPress={() => router.push('/registrar')} 
               >  Registrate
               </Text>
           </Text>      
