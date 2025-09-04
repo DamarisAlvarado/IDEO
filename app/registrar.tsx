@@ -1,7 +1,8 @@
+import { Colors } from '@/constants/Colors';
 import { globalStyles } from '@/styles/globalStyles';
 import { useRouter } from 'expo-router';
 import React from 'react';
-import { Button, Image, Text, TextInput, View } from 'react-native';
+import { Image, Pressable, Text, TextInput, View } from 'react-native';
 
 export default function Registrar() {
        const router = useRouter();
@@ -15,17 +16,19 @@ export default function Registrar() {
    
        <TextInput style={globalStyles.Inputs}secureTextEntry={true} placeholder='Contraseña'/>
        <TextInput style={[globalStyles.Inputs, { marginBottom: 50 }]}secureTextEntry={true} placeholder='Confirmar Contraseña'/>
-        <Button 
-           title="Registrar" 
-           onPress={() => router.push('/login')} 
-         /> 
-   
-         <Text style={{margin:20}}>¿Ya tienes cuenta? 
-          <Text 
-          onPress={() => router.push("/login")} 
-        >  Iniciar
-        </Text>
-    </Text>   
+       <Pressable
+            style={({ pressed }) => [
+              globalStyles.btonregistrar,
+              pressed ? { opacity: 0.7 } : { opacity: 1 },
+            ]}
+            onPress={() => router.push('/login')}
+          >
+            <Text style={{color:'white', fontWeight:'bold', fontSize: 20}}>Registrar</Text>
+          </Pressable>
+          <Text style={{ margin: 20 }}>
+            ¿No tienes una cuenta?
+            <Text style={{ color: Colors.text1 ,fontWeight:'bold' }} onPress={() => router.push('/login')}>  Iniciar Sesión</Text>
+          </Text> 
        </View>
 
   )
