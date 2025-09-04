@@ -90,7 +90,7 @@ export  const globalStyles = StyleSheet.create({
     },
     container: {
         borderRadius: 20,
-         overflow: 'hidden', //super importante para el borderRadius
+        overflow: 'hidden', //super importante para el borderRadius
         height: 150,
         width: 150,
         display:'flex',
@@ -111,6 +111,33 @@ export  const globalStyles = StyleSheet.create({
     color: 'white', 
     fontSize: 20 , 
     fontWeight: "bold"
-  }
-
+  },
+// menu intermedio
+    logomenuInter:{
+        justifyContent:'center',
+        width:100,
+        height:150,
+        resizeMode: "contain", 
+        marginLeft:20,
+    },
+    Botones: {
+        borderRadius: 50,
+        overflow: 'hidden', //super importante para el borderRadius
+        height: 150,
+        width: 300,
+        display:'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        margin:20
+      
+    },
+    Backgroundperfil:{
+        flex:1,
+        backgroundColor: '#2e8080ff',
+        alignItems: 'center',
+        justifyContent: 'center',
+        height:'100%',
+        width:'100%',
+        
+    },
 });

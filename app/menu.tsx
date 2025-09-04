@@ -1,4 +1,6 @@
 import { globalStyles } from '@/styles/globalStyles';
+import { router } from 'expo-router';
+import React from 'react';
 import { Image, Text, View } from 'react-native';
 import { HomeButton } from "../components/HomeButton";
 
@@ -10,10 +12,10 @@ export default function menu() {
                 <Text style={[globalStyles.textTitle]}>Hey , Damaris</Text>
             </View>
             <View style={[globalStyles.gridContainer]}>
-                <HomeButton label='Perfil' Image={'perfil'} />
-                <HomeButton label='Mapa' Image={'mapa'} />
-                <HomeButton label='Violencia' Image={'violencia'}/>
-                <HomeButton label='Información' Image={'informacion'}/>
+                <HomeButton estitlo='container' onPress={() => router.push('/perfil')} label='Perfil' Image={'perfil'} />
+                <HomeButton estitlo='container' onPress={() => console.log('hola')} label='Mapa' Image={'mapa'} />
+                <HomeButton estitlo='container' onPress={() => console.log('hola')} label='Violencia' Image={'violencia'}/>
+                <HomeButton estitlo='container' onPress={() => console.log('hola')} label='Información' Image={'informacion'}/>
             </View>
         </>
     )
