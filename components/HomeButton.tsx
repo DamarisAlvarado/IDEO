@@ -1,7 +1,8 @@
 import { globalStyles } from '@/styles/globalStyles';
+import React from 'react';
 import { ImageBackground, Pressable, Text, View } from "react-native";
 
-type ImageKey = 'perfil' | 'mapa' | 'violencia' | 'informacion' | 'inicio'| 'btnalerta';
+type ImageKey = 'perfil' | 'mapa' | 'violencia' | 'informacion' | 'inicio'| 'btnalerta'| 'violentometro'|'centros';
 interface Props{
     label: string;
     Image: ImageKey;
@@ -16,6 +17,8 @@ const img = {
     informacion: require('../assets/images/informacion.jpg'),
     inicio: require('../assets/images/inicio.jpg'),
     btnalerta: require('../assets/images/botonalerta.png'),
+    violentometro: require('../assets/images/violento.png'),
+    centros: require('../assets/images/centros.jpg'),
 }
 
 export function HomeButton ({ label , Image, estitlo,onPress} : Props) {

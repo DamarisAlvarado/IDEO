@@ -140,4 +140,43 @@ export  const globalStyles = StyleSheet.create({
         width:'100%',
         
     },
+
+    //perfil
+    btonPerfil:{
+        marginTop:20,
+        justifyContent:'center',
+        textAlign:'center',
+        height:50,
+        width: 300,
+        backgroundColor: Colors.text1,
+        borderRadius:10,
+        padding:10,
+        alignItems:'center',
+
+    },
+
+    //vio
+    container2: {
+        borderRadius: 20,
+        overflow: 'hidden', //super importante para el borderRadius
+        height: 150,
+        width: 250,
+        display:'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        margin:20,
+      
+    },
+
+    //MAPA
+    contenedorMapa:{
+        flex:1 ,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#D8DCDC',
+    },
+    map:{
+        width:'100%',
+        height:'100%',
+    }
 });
