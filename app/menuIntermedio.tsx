@@ -7,7 +7,7 @@ export default function menuIntermedio() {
   return (
    <View>
     <HomeButton estitlo='Botones' onPress={()=> router.push('/botonAlert')} label='Boton de Alerta' Image={'btnalerta'}/>    
-    <HomeButton estitlo='Botones' onPress={() => router.push('/login')} label='Home' Image={'inicio'} />  
+    <HomeButton estitlo='Botones' onPress={() => router.push('/Perfil/contacE')} label='Home' Image={'inicio'} />  
   </View>
   )
 }

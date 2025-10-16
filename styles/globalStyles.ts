@@ -178,5 +178,12 @@ export  const globalStyles = StyleSheet.create({
     map:{
         width:'100%',
         height:'100%',
-    }
+    },
+    // CONTACTO 
+    Contacto:{ 
+        justifyContent:'center', 
+        width:70, 
+        height: 70,
+        borderRadius: 50,
+        resizeMode: "contain" },
 });
