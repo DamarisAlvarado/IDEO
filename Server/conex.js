@@ -4,7 +4,9 @@ import pool from './BD.js';
  
 
 const BDApp = express();
+// eslint-disable-next-line react-hooks/rules-of-hooks
 BDApp.use(express.json());
+// eslint-disable-next-line react-hooks/rules-of-hooks
 BDApp.use(cors());
 
 // Crear un nuevo usuario
@@ -68,10 +70,35 @@ async function LoginRs(preg, resp) {
   }
 }
 
+async function CrearC(preg, resp) {
+  try {
+    const { Nombre, Apellido, Telefono } = preg.body;
+
+    const agregarUser = await pool.query(
+      "INSERT INTO contactos (nombre, apellido, telefono) VALUES ($1, $2, $3) RETURNING *",
+      [Nombre, Apellido, Telefono]
+    );
+
+    console.log('Contacto agregado:', agregarUser.rows[0]);
+
+    // validar siempre esto primero
+    resp.status(201).json({
+      message: "Contacto agregado correctamente",
+      usuario: agregarUser.rows[0],
+    });
+
+  } catch (error) {
+    console.error(error.message);
+    resp.status(500).json({ message: "Error al agregar contacto" });
+  }
+}
+  
+
 
 
 //llamar a la funcion
 BDApp.post('/usuarios', crearUsuario);
+BDApp.post('/crearContacto', CrearC);
 BDApp.post('/login', LoginRs);
 BDApp.listen(5000, () => {
   console.log('Servidor corriendo en el puerto 5000');

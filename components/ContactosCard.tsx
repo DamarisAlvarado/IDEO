@@ -2,7 +2,7 @@ import { globalStyles } from "@/styles/globalStyles";
 import React from "react";
 import { Image, Text, View } from "react-native";
 
-export default function ContactosCard() { 
+export default function ContactosCard({nombre ,apellido, telefono}: {nombre: string; apellido: string; telefono: string}) { 
     return ( 
     <View style={{flexDirection: "row", alignItems: "center", justifyContent: "center", backgroundColor: "pink", padding: 10, borderRadius: 10, width: "70%" , margin:10}}> 
     <View style={{ flexDirection: "column", alignItems: "center", justifyContent: "center", marginRight:15}}> 
@@ -10,8 +10,8 @@ export default function ContactosCard() {
          </View> 
          
          <View style={{ flexDirection: "column", alignItems: "flex-start", justifyContent: "flex-start"}}>
-             <Text>Damaris Alvarado</Text> 
-             <Text>1236457485</Text>
+             <Text>{nombre} {apellido}</Text> 
+             <Text>{telefono}</Text>
              
               </View> 
               </View> 

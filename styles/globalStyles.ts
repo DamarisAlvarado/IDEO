@@ -187,6 +187,16 @@ export  const globalStyles = StyleSheet.create({
         borderRadius: 50,
         resizeMode: "contain" },
     
+    BotonAgregar:{
+        justifyContent: "center", 
+        alignItems: "center", 
+        width: "70%", 
+        padding: 16, 
+        backgroundColor: '#2e8080ff', 
+        color:'white',
+        borderRadius: 20
+    },
+    
         //Violencia
     parrafos:{
         fontSize: 17, 
