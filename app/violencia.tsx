@@ -7,7 +7,7 @@ export default function violencia() {
   return (
     <View>
       <HomeButton estitlo='container2' onPress={() => router.push('/menu')} label='Violentómetro' Image={'violentometro'}/>
-      <HomeButton estitlo='container2' onPress={() => router.push('/Violencia/quizz')} label='Apoyo vivo Violencia' Image={'violencia'}/>
+      <HomeButton estitlo='container2' onPress={() => router.push('/Violencia/quizz')} label='Test de Violencia' Image={'violencia'}/>
       <HomeButton estitlo='container2' onPress={() => router.push('/menu')} label='Centros de atención' Image={'centros'}/>
     </View>
   )
