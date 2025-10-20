@@ -186,4 +186,11 @@ export  const globalStyles = StyleSheet.create({
         height: 70,
         borderRadius: 50,
         resizeMode: "contain" },
+    
+        //Violencia
+    parrafos:{
+        fontSize: 17, 
+        alignItems:'center',
+        paddingRight: 20,
+    }
 });
