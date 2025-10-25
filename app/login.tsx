@@ -14,7 +14,7 @@ export default function Login() {
 
     const IniciarS = async () => {
   try {
-    const res = await fetch('http://192.168.1.69:5000/login', {
+    const res = await fetch('http://10.22.111.246:5000/login', {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ username, password }),

@@ -15,7 +15,7 @@ export default function ContacE() {
     useEffect(() => {
   const fetchContactos = async () => {
     try {
-      const res = await fetch('http://192.168.1.69:5000/crearContacto'); 
+      const res = await fetch('http://10.22.111.246:5000/crearContacto'); 
       const data = await res.json();
       setdataContactos(data);
     } catch (error) {
@@ -29,7 +29,7 @@ export default function ContacE() {
     const EnviarDatos = async () => {
       try {
         const info = { Nombre , Apellido, Telefono };
-        const res = await fetch('http://192.168.1.69:5000/crearContacto', {
+        const res = await fetch('http://10.22.111.246:5000/crearContacto', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(info),
