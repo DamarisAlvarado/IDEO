@@ -94,6 +94,7 @@ export default function Mapa() {
           message: `${message}\n\n${googleMapsUrl}`,
           title: '¡Alerta de Emergencia!',
         });
+        
       } catch (error) {
         Alert.alert('Error', 'No se pudo abrir el menú para compartir.');
       }

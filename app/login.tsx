@@ -15,6 +15,10 @@ export default function Login() {
 
     const IniciarS = async () => {
   try {
+     if (!username.trim() || !password.trim()) {
+      Alert.alert('Error', 'Los campos no pueden estar vacío.');
+      return;
+    }
     const res = await fetch('http://10.22.118.41:5000/login', {
   
       method: "POST",
@@ -51,7 +55,7 @@ export default function Login() {
         <Ionicons name="arrow-back" size={24} color="#333" />
       </TouchableOpacity>
       <Image style={globalStyles.LogoPrin} source={require('../assets/images/logo.png')} />
-      <TextInput style={globalStyles.Inputs} keyboardType='email-address' placeholder='Usuario' onChangeText={setusername} />
+      <TextInput style={globalStyles.Inputs}  keyboardType='email-address' placeholder='Usuario' onChangeText={setusername} />
       <TextInput style={[globalStyles.Inputs]} secureTextEntry={true} placeholder='Contraseña' onChangeText={setPassword} />
       <Pressable
         style={({ pressed }) => [

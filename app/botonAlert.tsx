@@ -1,5 +1,6 @@
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router'; // Para la navegación
+
 import React from 'react';
 import { Alert, Linking, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
@@ -25,6 +26,7 @@ export default function BotonAlert() {
       ]
     );
   };
+
 
   // Para navegar a la pantalla del mapa
   const handleGoToMap = () => {
@@ -56,6 +58,7 @@ export default function BotonAlert() {
           <Ionicons name="map" size={40} color="white" />
           <Text style={styles.buttonText}>Compartir Ubicación</Text>
         </TouchableOpacity>
+
         <Text style={styles.infoText}> Al presionar Compartir Ubicación, serás llevada al mapa donde podrás activar el botón SOS{"\n"}para enviar tu ubicación actual.
 </Text>
 

@@ -15,6 +15,10 @@ export default function Registrar() {
 const EnviarDatos = async () => {
   try {
     const info = { username, email, password };
+     if (!username.trim() || !email.trim() || !password.trim()) {
+          Alert.alert('Error', 'Los campos no pueden estar vacío.');
+          return;
+        }
     const res = await fetch('http://10.22.118.41:5000/usuarios', {
 
       method: 'POST',
