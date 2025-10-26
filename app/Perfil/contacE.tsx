@@ -1,8 +1,10 @@
 import ContactosCard from '@/components/ContactosCard';
 import { Colors } from '@/constants/Colors';
+import { Ionicons } from '@expo/vector-icons';
+import { router } from 'expo-router';
 import { useSearchParams } from 'expo-router/build/hooks';
 import React, { useEffect, useState } from 'react';
-import { Alert, Pressable, ScrollView, Text, View } from 'react-native';
+import { Alert, Pressable, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import Dialog from "react-native-dialog";
 import { globalStyles } from '../../styles/globalStyles';
 export default function ContacE() {
@@ -104,7 +106,11 @@ const EnviarDatos = async () => {
 };
 
   return (
+    
       <View style={{ padding:30, margin:50, width: '100%', justifyContent: 'center' }}> 
+       <TouchableOpacity style={globalStyles.backButton}onPress={() => router.back()}>
+                <Ionicons name="arrow-back" size={24} color="#333" />
+            </TouchableOpacity>
 
       <Text style={{ fontSize: 30, fontWeight: "bold", textAlign: "center" , marginBottom: 20}}>Contactos</Text>
 

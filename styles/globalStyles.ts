@@ -69,11 +69,11 @@ export  const globalStyles = StyleSheet.create({
         marginLeft:20,
     },
     textTitle:{
-        fontSize: 40, 
+        fontSize: 35, 
         fontWeight: 'bold' , 
         color: Colors.text1,
         alignItems:'center',
-        paddingRight: 20,
+        textAlign:'center',
     },
      gridContainer: {
         flexDirection: 'row',
@@ -202,6 +202,7 @@ export  const globalStyles = StyleSheet.create({
         fontSize: 17, 
         alignItems:'center',
         paddingRight: 20,
+        textAlign: "justify", 
     },
 
     //premium
@@ -211,4 +212,31 @@ export  const globalStyles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#D8DCDC',
     },
+
+        titulos:{
+        fontSize: 17, 
+        fontWeight: 'bold',
+        alignItems:'center',
+        paddingRight: 20,
+        margin:10,
+    },
+
+    sticker:{
+        width:150,
+        height: 120,
+        resizeMode: "contain", 
+    },
+
+    backButton:{
+         flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    position: 'absolute',
+    top: 60, // Ajusta según la barra de estado de tu tel
+    left: 10,
+    zIndex: 1,
+    }
+
+
 });

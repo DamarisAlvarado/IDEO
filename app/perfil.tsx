@@ -2,10 +2,11 @@
 import ImagePerfil from '@/components/ImagePerfil';
 import { Colors } from '@/constants/Colors';
 import { globalStyles } from '@/styles/globalStyles';
+import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import { useSearchParams } from 'expo-router/build/hooks';
 import * as React from 'react';
-import { Alert, Pressable, Text, View } from 'react-native';
+import { Alert, Pressable, Text, TouchableOpacity, View } from 'react-native';
 import Dialog from "react-native-dialog";
 
 export default function perfil() {
@@ -76,6 +77,9 @@ const EnviarDatos = async () => {
 
   return (
     <View style={[{ backgroundColor: Colors.fondo, flex: 1, justifyContent: 'center', alignItems: 'center' }]}>
+      <TouchableOpacity style={globalStyles.backButton}onPress={() => router.back()}>
+        <Ionicons name="arrow-back" size={24} color="#333" />
+      </TouchableOpacity>
         <ImagePerfil/>
         <Text style={{fontWeight: 'bold' , margin:20 , fontSize: 20}}>Mi perfil</Text>
         <Text style={{fontWeight: 'bold' , marginBottom:10 , fontSize: 20}}>{username}</Text>

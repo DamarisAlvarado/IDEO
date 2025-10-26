@@ -1,10 +1,15 @@
 import { globalStyles } from '@/styles/globalStyles';
+import { Ionicons } from '@expo/vector-icons';
+import { router } from 'expo-router';
 import React from 'react';
-import { Pressable, Text, View } from 'react-native';
+import { Pressable, Text, TouchableOpacity, View } from 'react-native';
 
 export default function PremiumScreen() {
   return (
     <View style={{ width:'100%', height:'100%', flex: 1 ,backgroundColor: '#061a1c'} }>
+      <TouchableOpacity style={globalStyles.backButton}onPress={() => router.back()}>
+        <Ionicons name="arrow-back" size={24} color="#333" />
+      </TouchableOpacity>
       <Text style={{ color: 'white', fontSize: 50, padding:20, marginLeft:10 ,marginTop:80 }}>Obtén acceso</Text>
       <Text style={{ color: '#28c8d3', fontSize: 50, marginTop: 10, marginLeft: 30 }}>premium</Text>
 

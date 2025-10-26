@@ -1,6 +1,9 @@
 import { Question, questions } from '@/data/questions';
+import { globalStyles } from '@/styles/globalStyles';
+import { Ionicons } from '@expo/vector-icons';
+import { router } from 'expo-router';
 import React, { useState } from 'react';
-import { Linking, StyleSheet, Text, View } from 'react-native';
+import { Linking, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Appbar, Button, RadioButton } from 'react-native-paper';
 
 const Quiz = () => {
@@ -55,6 +58,9 @@ return "VIVES UNA RELACIÓN SANA";
 if (showResult) {
     return (
     <View>
+      <TouchableOpacity style={globalStyles.backButton}onPress={() => router.back()}>
+        <Ionicons name="arrow-back" size={24} color="#333" />
+      </TouchableOpacity>
         <Appbar.Header style={{backgroundColor: '#D8DCDC', elevation: 0}}>
         <Appbar.Content title="Test para medir la violencia" />
         </Appbar.Header>
