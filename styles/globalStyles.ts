@@ -73,7 +73,6 @@ export  const globalStyles = StyleSheet.create({
         fontWeight: 'bold' , 
         color: Colors.text1,
         alignItems:'center',
-        paddingRight: 20,
     },
      gridContainer: {
         flexDirection: 'row',
@@ -202,5 +201,18 @@ export  const globalStyles = StyleSheet.create({
         fontSize: 17, 
         alignItems:'center',
         paddingRight: 20,
-    }
+    },
+        titulos:{
+        fontSize: 17, 
+        fontWeight: 'bold',
+        alignItems:'center',
+        paddingRight: 20,
+    },
+
+    sticker:{
+        width:150,
+        height: 120,
+        resizeMode: "contain", 
+    },
+
 });
