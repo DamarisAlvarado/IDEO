@@ -85,7 +85,7 @@ return (
 
         <RadioButton.Group
         onValueChange={value => setSelectedValue(value)}
-        value={selectedValue}>
+        value={selectedValue || ''}>
             
             {currentQuestion.options.map((option, idx) => (
             <View key={idx} style={styles.optionContainer}>

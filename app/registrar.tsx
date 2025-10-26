@@ -14,7 +14,7 @@ export default function Registrar() {
 const EnviarDatos = async () => {
   try {
     const info = { username, email, password };
-    const res = await fetch('http://192.168.1.69:5000/usuarios', {
+    const res = await fetch('http://10.22.118.41:5000/usuarios', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(info),

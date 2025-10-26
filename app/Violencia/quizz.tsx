@@ -1,14 +1,12 @@
 import { globalStyles } from '@/styles/globalStyles';
+import { router } from 'expo-router';
 import React from 'react';
-import { Image, Pressable, Text, View } from 'react-native';
+import { Pressable, Text, View } from 'react-native';
 
 export default function Quizz() {
     return (
     <View style={{ marginTop: 15, flex: 1, alignItems: 'center' }}>
-        <Image
-        style={{ height: 370, width: '100%', resizeMode: 'contain' }}
-        source={require('../../assets/images/noviolencia.jpg')}
-        />
+       
     <View style={{ padding: 10, width: '90%' }}>
         <Text style={[globalStyles.textTitle]}>Vive una vida sin violencia</Text>
 
@@ -24,7 +22,7 @@ export default function Quizz() {
         style={({ pressed }) => [
         globalStyles.btonlogin,
         pressed ? { opacity: 0.7 } : { opacity: 1 },
-        ]}>
+        ]} onPress={() => {router.push('/Violencia/preguntas')}}>
         <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 20 }}>Comenzar</Text>
     </Pressable>
     </View>

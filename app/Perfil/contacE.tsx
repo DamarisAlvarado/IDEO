@@ -1,5 +1,6 @@
 import ContactosCard from '@/components/ContactosCard';
 import { Colors } from '@/constants/Colors';
+import { useSearchParams } from 'expo-router/build/hooks';
 import React, { useEffect, useState } from 'react';
 import { Alert, Pressable, ScrollView, Text, View } from 'react-native';
 import Dialog from "react-native-dialog";
@@ -11,66 +12,101 @@ export default function ContacE() {
     const [Apellido, setapellido] = useState('');
     const [Telefono, settelefono] = useState('');
     const [datacontactos, setdataContactos] = useState<any[]>([]); 
+    
+    const [userId, setUserId] = useState(null);
+    const searchParams = useSearchParams();
+    const username = searchParams.get('username');
+    console.log("Usuario en Contactos de Emergencia:", username);
 
-    useEffect(() => {
+   useEffect(() => {
+  async function fetchUserId() {
+    try {
+      if (!username) return; 
+
+      const res = await fetch(`http://10.22.118.41:5000/usuarioid?username=${username}`);
+
+      if (!res.ok) throw new Error('Usuario no encontrado');
+
+      const data = await res.json();
+
+      console.log("ID del usuario:", data.id);
+      const id = data.id;
+      console.log("ID almacenado:", id);
+      setUserId(data.id);
+    } catch (error) {
+      console.error('Error al obtener userId:', error);
+    }
+  }
+
+  fetchUserId();
+}, [username]);
+
+useEffect(() => {
   const fetchContactos = async () => {
     try {
-      const res = await fetch('http://192.168.1.69:5000/crearContacto'); 
+      if (!userId) return; // espera a que userId esté definido
+
+      const res = await fetch(`http://10.22.118.41:5000/contactos?userid=${userId}`);
+      if (!res.ok) throw new Error("Error al obtener contactos");
+
       const data = await res.json();
+      console.log("Contactos cargados:", data);
+
       setdataContactos(data);
     } catch (error) {
-      console.log(error);
+      console.error("Error al cargar contactos:", error);
     }
   };
+
   fetchContactos();
-}, []);
+}, [userId]); // se ejecuta cuando userId cambie
 
 
-    const EnviarDatos = async () => {
-      try {
-        const info = { Nombre , Apellido, Telefono };
-        const res = await fetch('http://192.168.1.69:5000/crearContacto', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(info),
-        });
-    
-        const data = await res.json();
-    
-        if (!res.ok) {
-          // Error del servidor
-          Alert.alert('Error', data.message || 'Error al registrar Contacto');
-        
-          return;
-        }
-    
-        // Limpiar campos
-        setnombre('');
-        setapellido('');
-        settelefono('');
 
-        setdataContactos(prev => {
-        console.log('Estado previo:', prev);
-        return [...prev, data.usuario];
-      });
-   
-        // Alerta con botón OK
-        Alert.alert(
-          'Éxito',
-          'Usuario agregado correctamente',
-        );
-    
-      } catch (error) {
-        console.log(error);
-        Alert.alert('Error', 'Ocurrió un error al registrar');
-      }
-    };
-    
-    
+const EnviarDatos = async () => {
+  try {
+    if (!Nombre.trim() || !Apellido.trim() || !Telefono.trim()) {
+      Alert.alert('Campos incompletos', 'Por favor completa todos los campos.');
+      return false;
+    }
+
+    if (!userId) {
+      Alert.alert('Error', 'No se ha encontrado el usuario. Intenta de nuevo.');
+      return false;
+    }
+
+    const info = { id: userId, Nombre, Apellido, Telefono };
+    const res = await fetch('http://10.22.118.41:5000/crearContacto', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(info),
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      Alert.alert('Error', data.message || 'Error al registrar contacto.');
+      return false;
+    }
+
+    setnombre('');
+    setapellido('');
+    settelefono('');
+    setdataContactos(prev => [...prev, data.usuario]);
+    Alert.alert('Éxito', 'Contacto agregado correctamente.');
+    return true;
+
+  } catch (error) {
+    console.error('Error al registrar contacto:', error);
+    Alert.alert('Error', 'Ocurrió un error al registrar el contacto.');
+    return false;
+  }
+};
+
   return (
       <View style={{ padding:30, margin:50, width: '100%', justifyContent: 'center' }}> 
 
-      <Text style={{ fontSize: 24, fontWeight: "bold", textAlign: "center"}}>Contactos</Text>
+      <Text style={{ fontSize: 30, fontWeight: "bold", textAlign: "center" , marginBottom: 20}}>Contactos</Text>
 
       <ScrollView contentContainerStyle={{alignItems: 'center'}}>
         {datacontactos.map(c => (
@@ -87,7 +123,7 @@ export default function ContacE() {
           
           <View style={{ justifyContent: "center", alignItems: "center", width: "100%", marginTop:20}}>
          <Pressable style={[globalStyles.BotonAgregar]} onPress={() => setVisible(true)}>
-           <Text style={{color: 'white', fontWeight: 'bold'}}>Agregar Usuario</Text>
+           <Text style={{ fontSize: 15, color: 'white', fontWeight: 'bold' }}>Agregar Usuario</Text>
           </Pressable>
 
         </View>
@@ -112,3 +148,5 @@ export default function ContacE() {
         </View>
     ) }
 
+
+    

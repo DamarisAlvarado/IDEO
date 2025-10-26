@@ -182,8 +182,8 @@ export  const globalStyles = StyleSheet.create({
     // CONTACTO 
     Contacto:{ 
         justifyContent:'center', 
-        width:70, 
-        height: 70,
+        width:60, 
+        height: 60,
         borderRadius: 50,
         resizeMode: "contain" },
     
@@ -202,5 +202,13 @@ export  const globalStyles = StyleSheet.create({
         fontSize: 17, 
         alignItems:'center',
         paddingRight: 20,
-    }
+    },
+
+    //premium
+    premiumContainer:{
+        flex:1 ,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#D8DCDC',
+    },
 });

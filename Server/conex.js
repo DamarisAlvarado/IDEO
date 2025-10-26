@@ -72,11 +72,11 @@ async function LoginRs(preg, resp) {
 
 async function CrearC(preg, resp) {
   try {
-    const { Nombre, Apellido, Telefono } = preg.body;
+    const { id, Nombre, Apellido, Telefono } = preg.body;
 
     const agregarUser = await pool.query(
-      "INSERT INTO contactos (nombre, apellido, telefono) VALUES ($1, $2, $3) RETURNING *",
-      [Nombre, Apellido, Telefono]
+      "INSERT INTO contactos (userid,nombre, apellido, telefono) VALUES ($1, $2, $3,$4) RETURNING *",
+      [id,Nombre, Apellido, Telefono]
     );
 
     console.log('Contacto agregado:', agregarUser.rows[0]);
@@ -92,13 +92,118 @@ async function CrearC(preg, resp) {
     resp.status(500).json({ message: "Error al agregar contacto" });
   }
 }
+
+async function ObtenerC(preg, resp) {
+  try {
+    const { userid } = preg.query; // recibe el userId desde el frontend
+
+    if (!userid) {
+      return resp.status(400).json({ message: "Falta el parámetro userid" });
+    }
+
+    const result = await pool.query(
+      "SELECT * FROM contactos WHERE userid = $1",
+      [userid]
+    );
+
+    resp.json(result.rows);
+    console.log("Contactos:", result.rows);
+  } catch (error) {
+    console.error("Error al obtener contactos:", error);
+    resp.status(500).json({ message: "Error al obtener contactos" });
+  }
+}
+
+
+
+BDApp.get('/usuarioid', async (req, res) => {
+  const { username } = req.query;
+
+  if (!username) {
+    return res.status(400).json({ message: "Falta username" });
+  }
+
+  try {
+    const result = await pool.query(
+      "SELECT userid FROM usuarios WHERE username = $1",
+      [username]
+    );
+
+    if (result.rows.length === 0) {
+      return res.status(404).json({ message: "Usuario no encontrado" });
+    }
+
+    res.json({ id: result.rows[0].userid });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Error buscando usuario" });
+  }
+});
+
+BDApp.get('/usuarioOBT', async (req, res) => {
+  const { userid } = req.query;
+
+  if (!userid) {
+    return res.status(400).json({ message: "Falta userid" });
+  }
+
+  try {
+    const result = await pool.query(
+      "SELECT username, password, email FROM usuarios WHERE username = $1",
+      [userid]
+    );
+
+    if (result.rows.length === 0) {
+      return res.status(404).json({ message: "Usuario no encontrado" });
+    }
+
   
+    res.json(result.rows[0]);
+  } catch (error) {
+    console.error("Error buscando usuario:", error);
+    res.status(500).json({ message: "Error buscando usuario" });
+  }
+});
+
+
+async function ModificarUser(req, resp) {
+  try {
+    const { usernameOld, username, email, password } = req.body;
+
+    const actualizarUser = await pool.query(
+      `UPDATE usuarios
+       SET username = $1,
+           email = $2,
+           password = $3
+       WHERE username = $4
+       RETURNING *`,
+      [username, email, password, usernameOld]
+    );
+
+    if (actualizarUser.rows.length === 0) {
+      return resp.status(404).json({ message: "Usuario no encontrado" });
+    }
+
+    console.log("Modificado:", actualizarUser.rows[0]);
+
+    resp.status(200).json({
+      message: "Modificado correctamente",
+      usuario: actualizarUser.rows[0],
+    });
+  } catch (error) {
+    console.error(error.message);
+    resp.status(500).json({ message: "Error al modificar" });
+  }
+}
+
 
 
 
 //llamar a la funcion
 BDApp.post('/usuarios', crearUsuario);
+BDApp.put('/ModificarU', ModificarUser);
 BDApp.post('/crearContacto', CrearC);
+BDApp.get('/contactos', ObtenerC);
 BDApp.post('/login', LoginRs);
 BDApp.listen(5000, () => {
   console.log('Servidor corriendo en el puerto 5000');

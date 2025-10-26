@@ -17,7 +17,7 @@ export default function Menu() {
                 <Text style={[globalStyles.textTitle]}>Hey , {username}</Text>
             </View>
             <View style={[globalStyles.gridContainer]}>
-                <HomeButton estitlo='container' onPress={() => router.push('/perfil')} label='Perfil' Image={'perfil'} />
+                <HomeButton estitlo='container' onPress={() =>  router.push({ pathname: "/perfil", params: { username: username } }) } label='Perfil' Image={'perfil'} />
                 <HomeButton estitlo='container' onPress={() => router.push('/Mapa/mapa')} label='Mapa' Image={'mapa'} />
                 <HomeButton estitlo='container' onPress={() => router.push('/violencia')} label='Violencia' Image={'violencia'}/>
                 <HomeButton estitlo='container' onPress={() => router.push('/')} label='Información' Image={'informacion'}/>
