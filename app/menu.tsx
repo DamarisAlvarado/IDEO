@@ -22,7 +22,6 @@ export default function Menu() {
                 <HomeButton estitlo='container' onPress={() => router.push('/Mapa/mapa')} label='Mapa' Image={'mapa'} />
                 <HomeButton estitlo='container' onPress={() => router.push('/violencia')} label='Violencia' Image={'violencia'}/>
                 <HomeButton estitlo='container' onPress={() => router.push('/informacion')} label='Información' Image={'informacion'}/>
-                <HomeButton estitlo='container' onPress={() => router.push('/servicios')} label='Servicios' Image={'pagos'}/>
 
             </View>
             <TouchableOpacity style={globalStyles.backButton}onPress={() => router.back()}>

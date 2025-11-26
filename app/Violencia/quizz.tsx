@@ -32,13 +32,6 @@ export default function Quizz() {
 
         <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 20 }}>Violencia</Text>
     </Pressable>
-        <Pressable
-        style={({ pressed }) => [
-        globalStyles.btonlogin,
-        pressed ? { opacity: 0.7 } : { opacity: 1 },
-        ]} onPress={() => {router.push('/Violencia/violenciaFin')}}>
-        <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 20 }}>Violencia Financiera</Text>
-    </Pressable>
     </View>
     
     </View>);
